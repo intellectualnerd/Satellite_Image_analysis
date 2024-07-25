@@ -21,7 +21,8 @@ import UserInsightScan from './Pages/App/User/InsightScan/UserInsightScan';
 import Dashboard from './Pages/App/User/Dashboard/DashBoard';
 //css files
 import './main.css'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 
 
