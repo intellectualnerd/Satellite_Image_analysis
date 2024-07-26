@@ -20,17 +20,16 @@ function CustomNavbar() {
     };
   }, []);
   const [myStyle, setMyStyle] = useState({
-    backgroundColor: 'var(--SIA-blue) !important'
+    
   });
   useEffect(() => {
     if (hasScrolledPast100) {
       setMyStyle({
-        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-        backgroundColor: 'var(--SIA-blue) !important'
+        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)'
       });
     } else {
       setMyStyle({
-        backgroundColor: 'var(--SIA-blue) !important'
+        
       });
     }
   }, [hasScrolledPast100]);

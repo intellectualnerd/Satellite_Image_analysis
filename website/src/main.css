@@ -30,7 +30,9 @@
     background-color: var(--SIA-green);
     color: var(--SIA-black);
 }
-
+nav.navbar-dark.bg-dark{
+    background-color: var(--SIA-blue) !important ;
+}
 .row {
     margin: 0 !important;
     padding: 0 !important;
