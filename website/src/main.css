@@ -1,12 +1,20 @@
 /*---------------------Fonts (also in index.html)----------------------*/
-/*"Oxanium", sans-serif*/ @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap'); 
-/*"Poppins", sans-serif*/ @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/*"Oxanium", sans-serif*/
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap');
+/*"Poppins", sans-serif*/
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
 
 /*---------------------Colors----------------------*/
 :root {
-    
+    --SIA-blue: #152362;
+    --SIA-lightblue: #172564;
+    --SIA-darkblue: #283880;
+    --SIA-green: #93DC49;
+    --SIA-white: #ffffff;
+    --SIA-black: #000000;
+    --SIA-gray: #EAE9E9;
 }
 
 /*Have all reusable components css*/
@@ -15,11 +23,12 @@
     padding: 0;
     box-sizing: border-box !important;
     z-index: 2;
-    font-family:"Poppins", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 ::selection {
-
+    background-color: var(--SIA-green);
+    color: var(--SIA-black);
 }
 
 .row {
@@ -32,31 +41,227 @@ body {
     margin: 0 !important;
     padding: 0 !important;
     box-sizing: border-box !important;
+    overflow-x: hidden;
 }
 
 #root {
     margin: 0 !important;
     padding: 0 !important;
     box-sizing: border-box !important;
+    background-color: var(--SIA-blue);
+    color: var(--SIA-white);
+
+}
+
+/*------------------------Home---------------------------------*/
+.nav-link {
+    color: var(--SIA-white) !important;
+}
+
+.nav-link.active {
+    color: var(--SIA-green) !important;
+}
+
+.nav-link {
+    margin: 0 1rem;
+    /* Adjust the margin value as needed */
+}
+/*---------------Animation------------------*/
+.Earthsvg {
+    height: 100%;
+    max-width: 100%;
+    aspect-ratio: 1/1;
+}
+
+.heroimg_column {
+    height: 100vh;
+    min-height: 500px;
+}
+
+.heroimg_container {
+    height: 80%;
+    min-height: 400px;
+    border-radius: 100%;
+    position: relative;
+}
+
+.rotating-image {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    transform: translate(0px,120px) rotate(12deg);
+    /* Center the image */
+    width: 12%;
+}
+
+.rotate_container{
+    object-fit: contain !important;
+    animation: rotate 100s linear infinite;
+}
+
+.heroimg_container{
+    transform: translateY(-8%);
+}
+
+
+.titlefont{
+    font-family: "Oxanium", sans-serif;
+    font-size: 4rem;
+    line-height: 4.2rem;
+}
+
+button{
+    border: none;
+    outline: none;
+}
+
+.herobutton{
+    font-family:"Oxanium", sans-serif ;
+    padding: 8px 16px;
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: 2px solid var(--SIA-green);
+    color: var(--SIA-green);
+    transition: all 0.5s;
+}
+.herobutton:hover{
+    background-color: var(--SIA-green);
+    color: var(--SIA-black);
+}
+.herobutton:hover>svg{
+    fill: var(--SIA-black);
+    transition-delay:50ms;
+}
+.herobutton>span{
+    font-family:"Oxanium", sans-serif ;
+}
+.herobutton>svg{
+    height: 1.5rem;
+    padding-left: 5px;
+    fill:var(--SIA-green);
+    transition-delay:50ms;
+}
+
+/*--------------Home - imageanalysis photo-------------*/
+
+.imageAnalysisDiv{
+    max-width: 500px;
+    aspect-ratio: 1/1;
+    position: relative;
+    background-color: transparent;
+    width: 100%;
+    border: 3px dashed var(--SIA-darkblue);
+    padding: 8%;
+}
+.imageContainer{
+    height: 100vh;
+    min-height: 550px;
+    transform: translateY(-50px);
+}
+.analysisImg{
+    height: 100%;
+    width: 100%;
+}
+.searchicon{
+    position: absolute;
+    height: 25%;
+    bottom: 0;
+    right: 0;
+    transform: translate(10%,10%);
+}
+.lightblue-container{
+    background-color: var(--SIA-lightblue);
+    padding: 24px;
+    width: 100%;
+    margin: 20px 0;
+}
+.svg-lb-container{
+    display: inline-block;
+}
+.svg-lb-container>img{
+    height: calc(30px + 1rem);
+    margin-right: 20px;
+}
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg) ;
+    }
 }
 
 
 @media screen and (max-width: 1200px) {
+    .heroimg_column {
+        height: 700px;
+    }
+    .myfix2{
+        width: 450px ;
+        aspect-ratio: 1/1;
+        
+    }
+    .myfix{
+        padding:50px 0 ;
+    }
     
+    .rotating-image{
+        transform: translate(0px,90px) rotate(12deg);
+    /* Center the image */
+        width: 12%;
+    }
+    .titlefont{
+        font-size: 3.5rem;
+        line-height: 4rem;
+    }
+    
+    .searchicon{
+        height: 18%;
+    }
 }
 
-@media screen and (max-width: 900px) {
-    
+@media screen and (max-width: 990px) {
+    .heroimg_column {
+        height: 400px ;
+        align-content: center;
+        justify-content: center;
+    }
+    .myfix{
+        left:calc(50% - 200px) ;
+        padding:0;
+    }
+    .myfix2{
+        width: 400px;
+    }
 }
 
 @media screen and (max-width: 768px) {
-
+    
+    .titlefont{
+        font-size: 3rem;
+        line-height: 3.5rem;
+    }
+    .herobutton{
+        font-size: 1.4rem;
+    }
+    .herobutton>svg{
+        height: 1.4rem;
+    }
 }
 
 @media screen and (max-width: 576px) {
-    
+    .titlefont{
+        font-size: 2.5rem;
+        line-height: 3rem;
+    }
+    .searchicon{
+        height: 15%;
+    }
+    .lightblue-container{
+        padding: 24px !important;
+    }
 }
 
-@media screen and (max-width: 335px) {
+@media screen and (max-width: 480px) {
+    .myfix2{
+        display: none;
+    }
     
 }

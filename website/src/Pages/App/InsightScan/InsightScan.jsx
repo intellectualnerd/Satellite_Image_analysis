@@ -1,7 +1,9 @@
+import NavHome from "../Components/NavHome"
+
 const InsightScan = () => {
     return (
         <>
-        <h1>InsightScan</h1>
+            <NavHome/>
         </>
     );
 }
