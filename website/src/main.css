@@ -30,9 +30,11 @@
     background-color: var(--SIA-green);
     color: var(--SIA-black);
 }
-nav.navbar-dark.bg-dark{
-    background-color: var(--SIA-blue) !important ;
+
+nav.navbar-dark.bg-dark {
+    background-color: var(--SIA-blue) !important;
 }
+
 .row {
     margin: 0 !important;
     padding: 0 !important;
@@ -68,6 +70,7 @@ body {
     margin: 0 1rem;
     /* Adjust the margin value as needed */
 }
+
 /*---------------Animation------------------*/
 .Earthsvg {
     height: 100%;
@@ -91,34 +94,34 @@ body {
     position: absolute;
     top: 0%;
     right: 0%;
-    transform: translate(0px,120px) rotate(12deg);
+    transform: translate(0px, 120px) rotate(12deg);
     /* Center the image */
     width: 12%;
 }
 
-.rotate_container{
+.rotate_container {
     object-fit: contain !important;
     animation: rotate 100s linear infinite;
 }
 
-.heroimg_container{
+.heroimg_container {
     transform: translateY(-8%);
 }
 
 
-.titlefont{
+.titlefont {
     font-family: "Oxanium", sans-serif;
     font-size: 4rem;
     line-height: 4.2rem;
 }
 
-button{
+button {
     border: none;
     outline: none;
 }
 
-.herobutton{
-    font-family:"Oxanium", sans-serif ;
+.herobutton {
+    font-family: "Oxanium", sans-serif;
     padding: 8px 16px;
     font-size: 1.5rem;
     background-color: transparent;
@@ -126,27 +129,31 @@ button{
     color: var(--SIA-green);
     transition: all 0.5s;
 }
-.herobutton:hover{
+
+.herobutton:hover {
     background-color: var(--SIA-green);
     color: var(--SIA-black);
 }
-.herobutton:hover>svg{
+
+.herobutton:hover>svg {
     fill: var(--SIA-black);
-    transition-delay:50ms;
+    transition-delay: 50ms;
 }
-.herobutton>span{
-    font-family:"Oxanium", sans-serif ;
+
+.herobutton>span {
+    font-family: "Oxanium", sans-serif;
 }
-.herobutton>svg{
+
+.herobutton>svg {
     height: 1.5rem;
     padding-left: 5px;
-    fill:var(--SIA-green);
-    transition-delay:50ms;
+    fill: var(--SIA-green);
+    transition-delay: 50ms;
 }
 
 /*--------------Home - imageanalysis photo-------------*/
 
-.imageAnalysisDiv{
+.imageAnalysisDiv {
     max-width: 500px;
     aspect-ratio: 1/1;
     position: relative;
@@ -155,39 +162,49 @@ button{
     border: 3px dashed var(--SIA-darkblue);
     padding: 8%;
 }
-.imageContainer{
+
+.imageContainer {
     height: 100vh;
     min-height: 550px;
     transform: translateY(-50px);
 }
-.analysisImg{
+
+.analysisImg {
     height: 100%;
     width: 100%;
 }
-.searchicon{
+
+.searchicon {
     position: absolute;
     height: 25%;
     bottom: 0;
     right: 0;
-    transform: translate(10%,10%);
+    transform: translate(10%, 10%);
 }
-.lightblue-container{
+
+.lightblue-container {
     background-color: var(--SIA-lightblue);
     padding: 24px;
     width: 100%;
     margin: 20px 0;
 }
-.svg-lb-container{
+
+.svg-lb-container {
     display: inline-block;
 }
-.svg-lb-container>img{
+
+.svg-lb-container>img {
     height: calc(30px + 1rem);
     margin-right: 20px;
 }
 
+.phone-earthimg.Earthsvg{
+    display: none;
+}
+
 @keyframes rotate {
     100% {
-        transform: rotate(360deg) ;
+        transform: rotate(360deg);
     }
 }
 
@@ -196,87 +213,105 @@ button{
     .heroimg_column {
         height: 700px;
     }
-    .myfix2{
-        width: 450px ;
+
+    .myfix2 {
+        width: 450px;
         aspect-ratio: 1/1;
-        
+
     }
-    .myfix{
-        padding:50px 0 ;
+
+    .myfix {
+        padding: 50px 0;
     }
-    
-    .rotating-image{
-        transform: translate(0px,90px) rotate(12deg);
-    /* Center the image */
+
+    .rotating-image {
+        transform: translate(0px, 90px) rotate(12deg);
+        /* Center the image */
         width: 12%;
     }
-    .titlefont{
+
+    .titlefont {
         font-size: 3.5rem;
         line-height: 4rem;
     }
-    
-    .searchicon{
+
+    .searchicon {
         height: 18%;
     }
 
-    
+
 }
 
 @media screen and (max-width: 990px) {
     .heroimg_column {
-        height: 400px ;
+        height: 400px;
         align-content: center;
         justify-content: center;
     }
-    .myfix{
-        left:calc(50% - 200px) ;
-        padding:0;
+
+    .myfix {
+        left: calc(50% - 200px);
+        padding: 0;
     }
-    .myfix2{
+
+    .myfix2 {
         width: 400px;
     }
 }
 
 @media screen and (max-width: 768px) {
-    
-    .titlefont{
+
+    .titlefont {
         font-size: 3rem;
         line-height: 3.5rem;
     }
-    .herobutton{
+
+    .herobutton {
         font-size: 1.4rem;
     }
-    .herobutton>svg{
+
+    .herobutton>svg {
         height: 1.4rem;
     }
 }
 
 @media screen and (max-width: 576px) {
-    .titlefont{
+    .titlefont {
         font-size: 2.5rem;
         line-height: 3rem;
     }
-    .searchicon{
+
+    .searchicon {
         height: 15%;
     }
-    .lightblue-container{
+
+    .lightblue-container {
         padding: 18px !important;
     }
-    .imageContainer{
+
+    .imageContainer {
         height: auto !important;
+        margin-top: 30px;
         min-height: 350px;
     }
-    .rotating-image{
-        transform: translate(0px,100px) rotate(12deg);
-    /* Center the image */
+
+    .rotating-image {
+        transform: translate(0px, 100px) rotate(12deg);
+        /* Center the image */
         width: 12%;
     }
 }
 
 @media screen and (max-width: 420px) {
-    .myfix2{
-
+    .myfix2 {
         display: none;
     }
+    .Earthsvg{
+        display: none;
+    }
+    .phone-earthimg.Earthsvg{
+        display: block;
+    }
     
+
 }
