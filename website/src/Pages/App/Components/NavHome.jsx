@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import logo from "../../../../public/icon.png";
+import logo from "/icon.png";
 
 function CustomNavbar() {
   const location = useLocation();
@@ -34,11 +34,6 @@ function CustomNavbar() {
       });
     }
   }, [hasScrolledPast100]);
-  if(hasScrolledPast100)
-    myStyle = { boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.1)",backgroundColor: 'var(--SIA-blue) !important'};
-  
-  else
-    myStyle={backgroundColor: 'var(--SIA-blue) !important'};
   return (
     <Navbar className='fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark" style={myStyle}>
       <Container>
