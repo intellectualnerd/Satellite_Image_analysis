@@ -19,14 +19,28 @@ function CustomNavbar() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  var mystyle={backgroundColor: 'var(--SIA-blue) !important'};
+  const [myStyle, setMyStyle] = useState({
+    backgroundColor: 'var(--SIA-blue) !important'
+  });
+  useEffect(() => {
+    if (hasScrolledPast100) {
+      setMyStyle({
+        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+        backgroundColor: 'var(--SIA-blue) !important'
+      });
+    } else {
+      setMyStyle({
+        backgroundColor: 'var(--SIA-blue) !important'
+      });
+    }
+  }, [hasScrolledPast100]);
   if(hasScrolledPast100)
-    mystyle = { boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.1)",backgroundColor: 'var(--SIA-blue) !important'};
+    myStyle = { boxShadow:" 0px 2px 4px rgba(0, 0, 0, 0.1)",backgroundColor: 'var(--SIA-blue) !important'};
   
   else
-    mystyle={backgroundColor: 'var(--SIA-blue) !important'};
+    myStyle={backgroundColor: 'var(--SIA-blue) !important'};
   return (
-    <Navbar className='fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark" style={mystyle}>
+    <Navbar className='fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark" style={myStyle}>
       <Container>
         <Navbar.Brand href="/"><img src={logo} style={{height:"40px", margin:"0 10px 0 0"}}/>Satelizer</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
