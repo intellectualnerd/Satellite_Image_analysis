@@ -215,6 +215,8 @@ button{
     .searchicon{
         height: 18%;
     }
+
+    
 }
 
 @media screen and (max-width: 990px) {
@@ -255,12 +257,22 @@ button{
         height: 15%;
     }
     .lightblue-container{
-        padding: 24px !important;
+        padding: 18px !important;
+    }
+    .imageContainer{
+        height: auto !important;
+        min-height: 350px;
+    }
+    .rotating-image{
+        transform: translate(0px,100px) rotate(12deg);
+    /* Center the image */
+        width: 12%;
     }
 }
 
-@media screen and (max-width: 480px) {
-    .myfix2{
+@media screen and (max-width: 420px) {
+    .rotate_container
+    .rotating-image{
         display: none;
     }
     
