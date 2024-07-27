@@ -1,8 +1,10 @@
 import { Outlet } from "react-router-dom";
+import MyNav from "./Component/MyNav";
+
 const User = () => {
     return (
         <>
-        <h1>User</h1>
+        <MyNav/>
         <Outlet/>
         </>
     );

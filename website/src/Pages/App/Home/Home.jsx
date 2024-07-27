@@ -2,7 +2,7 @@ import NavHome from "../Components/NavHome";
 import HeroAnimation from "../Components/HeroAnimation";
 import TitleFont from "../Components/TitleFont";
 import HeroButton from "../Components/HeroButton";
-import analysisImg from "./images/imageanalysis.png"
+import analysisImg from "./images/imageanalysis.png";
 import SearchIcon from "./images/SearchIcon.png";
 import eyeImg from "./images/eye.png";
 import cloudImg from "./images/cloud.png";
@@ -12,7 +12,7 @@ const Home = () => {
     return (
         <>
             <NavHome />
-            <div className="container w-100" style={{ overflowY: "hidden", paddingTop: "70px" }}>
+            <div className="container w-100" style={{  paddingTop: "70px" }}>
                 <div className="row">
                     <div className="col-lg-6 col-md-12 col-sm-12">
                         <HeroAnimation />

@@ -129,7 +129,14 @@ button {
     color: var(--SIA-green);
     transition: all 0.5s;
 }
-
+.herobutton.disable{
+    background-color: var(--SIA-green);
+    color: var(--SIA-black);
+}
+.herobutton.disable>svg {
+    fill: var(--SIA-black);
+    transition-delay: 50ms;
+}
 .herobutton:hover {
     background-color: var(--SIA-green);
     color: var(--SIA-black);
@@ -189,6 +196,17 @@ button {
     margin: 20px 0;
 }
 
+.center_container{
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+         /* Optional: Full viewport height */
+      }
+      
+}
+
 .svg-lb-container {
     display: inline-block;
 }
@@ -201,7 +219,23 @@ button {
 .phone-earthimg.Earthsvg{
     display: none;
 }
-
+.Form-title{
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.compulsorySVG{
+    display: inline-block;
+    height: 2.5rem;
+    margin-left: 10px;
+}
+.display-none{
+    display: none;
+}
+.btn-close {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
 @keyframes rotate {
     100% {
         transform: rotate(360deg);
@@ -217,7 +251,7 @@ button {
     .myfix2 {
         width: 450px;
         aspect-ratio: 1/1;
-
+        
     }
 
     .myfix {

@@ -43,10 +43,10 @@ function CustomNavbar() {
             <Nav.Link href="/" active={activeKey == '/'}>
               Home
             </Nav.Link>
-            <Nav.Link href="/InsightScan" active={activeKey === '/InsightScan'}>
+            <Nav.Link href="/InsightScan" active={(activeKey.toLowerCase() === '/insightscan')}>
               InsightScan
             </Nav.Link>
-            <Nav.Link href="/User" active={activeKey === '/User'} >
+            <Nav.Link href="/user/adddata" active={(activeKey.toLowerCase() === '/user/adddata')} >
               User
             </Nav.Link>
           </Nav>
