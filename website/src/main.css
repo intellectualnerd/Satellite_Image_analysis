@@ -132,6 +132,7 @@ button {
 .herobutton.disable{
     background-color: var(--SIA-green);
     color: var(--SIA-black);
+    opacity: 0.4;
 }
 .herobutton.disable>svg {
     fill: var(--SIA-black);
@@ -236,6 +237,11 @@ button {
     outline: none !important;
     box-shadow: none !important;
 }
+.betweenOR{
+    color: var(--SIA-green);
+    font-size: 3rem;
+    text-align: center;
+}
 @keyframes rotate {
     100% {
         transform: rotate(360deg);
@@ -290,6 +296,9 @@ button {
 
     .myfix2 {
         width: 400px;
+    }
+    .betweenOR{
+        font-size: 2rem;
     }
 }
 

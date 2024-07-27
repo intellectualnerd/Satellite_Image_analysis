@@ -4,10 +4,13 @@ import HeroButton from "../Components/HeroButton";
 
 
 function ImageUploadForm(props) {
-    const [data1, setData1] = props.resData;
+    var [data1, setData1] = [,];
+    if (props.type == "InsightScan" || props.type == "UserInsightScan")
+        [data1, setData1] = props.resData;
     var [data2, setData2] = [,];
     if (props.type == "UserInsightScan")
         [data2, setData2] = props.resFormData;
+
     const [imageUrl, setImageUrl] = useState("");
     const [selectedFile, setSelectedFile] = useState(null);
     const [date, setDate] = useState("");
@@ -15,7 +18,7 @@ function ImageUploadForm(props) {
     const [iotData, setIotData] = useState({ O3: "", CO: "", NO2: "", SO2: "", AQI: "", PM2_5: "", PM10: "" });
     const [statusMessage, setStatusMessage] = useState("");
     const [loading, setLoading] = useState(false); // For managing loading state
-    
+
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
         if (file && file.type.startsWith('image/')) {
@@ -136,8 +139,8 @@ function ImageUploadForm(props) {
                             "PM2_5": `${iotData.PM2_5}`,
                             "PM10": `${iotData.PM10}`
                         });
-                    
-                        
+
+
 
                 }
             } catch (error) {
@@ -151,16 +154,90 @@ function ImageUploadForm(props) {
         }
     };
 
-    
+
 
 
     const myfunc = () => {
         if (props.type == "InsightScan" || props.type == "UserInsightScan")
             sendData();
+        else if (props.type == "submitData")
+            submitData();
+
+
     }
     const handleCloseAlert = () => {
         setStatusMessage('');
     };
+
+    const [formData, setFormData] = useState({});
+
+    const submitData = async () => {
+        console.log("submitData function called"); // Debugging
+    
+        if (location && date && selectedFile) {
+            console.log('Location:', location);
+            console.log('Date:', date);
+            console.log('Selected File:', selectedFile);
+            
+            setFormData({
+                "date": `${date}`,
+                "location": `${location}`,
+                "file": selectedFile, // This is a file object
+                "O3": `${iotData.O3}`,
+                "CO": `${iotData.CO}`,
+                "NO2": `${iotData.NO2}`,
+                "SO2": `${iotData.SO2}`,
+                "AQI": `${iotData.AQI}`,
+                "PM2_5": `${iotData.PM2_5}`,
+                "PM10": `${iotData.PM10}`
+            });
+    
+            setLoading(true);
+    
+            const formDataToSubmit = new FormData();
+            Object.entries(formData).forEach(([key, value]) => {
+                if (key === 'file') {
+                    console.log('Appending file:', value); // Debugging
+                    formDataToSubmit.append(key, value);
+                } else {
+                    console.log(`Appending ${key}: ${value}`); // Debugging
+                    formDataToSubmit.append(key, value);
+                }
+            });
+    
+            // Log FormData entries
+            for (let pair of formDataToSubmit.entries()) {
+                console.log(`${pair[0]}: ${pair[1]}`);
+            }
+    
+            try {
+                const response = await fetch('YOUR_API_ENDPOINT_HERE', {
+                    method: 'POST',
+                    body: formDataToSubmit,
+                });
+    
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+    
+                const data = await response.json();
+                setStatusMessage('Data submitted successfully!');
+                // Handle success response data here
+            } catch (error) {
+                console.error('Error during data submission:', error);
+                setStatusMessage(`Error: ${error.message}`);
+            } finally {
+                setLoading(false);
+            }
+        } else {
+            setStatusMessage('Error: Image, Date, and Location are required');
+        }
+    };
+    
+
+
+
+
 
     return (
         <>
@@ -182,7 +259,7 @@ function ImageUploadForm(props) {
                             </svg>
                             <div className="form-group my-3">
                                 <label htmlFor="imageUpload" className='pb-2'>Upload Image :</label>
-                                <input type="file" className="form-control" id="imageUpload" onChange={handleImageUpload} accept="image/*"/>
+                                <input type="file" className="form-control" id="imageUpload" onChange={handleImageUpload} accept="image/*" />
                             </div>
                             <div className="form-group my-3">
                                 <input
@@ -284,7 +361,7 @@ function ImageUploadForm(props) {
                                 />
                             </div>
                             <HeroButton
-                                text={loading ? 'Submitting...' : 'Enter'}
+                                text={loading ? 'Submitting...' : props.type=='submitData' ? "Submit" : "Enter"}
                                 onClick={myfunc}
                                 disabled={loading}
                             />
