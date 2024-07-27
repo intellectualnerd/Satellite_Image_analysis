@@ -1,48 +1,5 @@
 {
-    "version": 2,
-    "builds": [
-      { "src": "src/index.html", "use": "@vercel/static" },
-      { "src": "src/api/*.js", "use": "@vercel/node" }
-    ],
-    "routes": [
-      {
-        "src": "/",
-        "dest": "/index.html"
-      },
-      {
-        "src": "/InsightScan",
-        "dest": "/InsightScan.html"
-      },
-      {
-        "src": "/User",
-        "dest": "/User/index.html"
-      },
-      {
-        "src": "/User/AddData",
-        "dest": "/User/AddData.html"
-      },
-      {
-        "src": "/User/InsightScan",
-        "dest": "/User/InsightScan.html"
-      },
-      {
-        "src": "/User/Dashboard",
-        "dest": "/User/Dashboard.html"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/404.html",
-        "status": 404
-      }
-    ],
-    "functions": {
-      "users/**/*.js": {
-        "maxDuration": 30
-      },
-      "api/*.js": {
-        "memory": 128,
-        "maxDuration": 10
-      }
-    }
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/" }
+    ]
   }
-  
