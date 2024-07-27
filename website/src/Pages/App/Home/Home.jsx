@@ -42,7 +42,7 @@ const Home = () => {
                                     <div className="svg-lb-container">
                                         <img src={eyeImg} />
                                     </div>
-                                    Insights from images and IOT data
+                                    Insights from images & IOT data
                                 </div>
                                 <div className="lightblue-container sm-padding">
                                     <div className="svg-lb-container ">
