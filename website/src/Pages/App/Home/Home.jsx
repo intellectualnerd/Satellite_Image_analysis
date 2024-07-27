@@ -38,19 +38,19 @@ const Home = () => {
                     <div className="col-lg-6 col-md-12 col-sm-12 order-lg-1 order-2">
                         <div className="d-flex justify-content-start align-items-center" style={{ height: "85%" }}>
                             <div className="w-100 mb-5">
-                                <div className="lightblue-container">
+                                <div className="lightblue-container sm-padding">
                                     <div className="svg-lb-container">
                                         <img src={eyeImg} />
                                     </div>
                                     Insights from images and IOT data
                                 </div>
-                                <div className="lightblue-container">
-                                    <div className="svg-lb-container">
+                                <div className="lightblue-container sm-padding">
+                                    <div className="svg-lb-container ">
                                         <img src={cloudImg} />
                                     </div>
                                     Data monitoring and summerizing
                                 </div>
-                                <div className="lightblue-container">
+                                <div className="lightblue-container sm-padding">
                                     <div className="svg-lb-container">
                                         <img src={suggestImg} />
                                     </div>

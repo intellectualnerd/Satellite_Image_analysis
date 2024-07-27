@@ -344,8 +344,11 @@ button {
         width: 12%;
     }
     .svg-lb-container>img {
-        height: 1.5rem;
+        height: calc(15px + 1rem);
         margin-right: 10px;
+    }
+    .sm-padding{
+        padding: 14px !important;
     }
 }
 
