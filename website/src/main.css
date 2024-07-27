@@ -343,6 +343,10 @@ button {
         /* Center the image */
         width: 12%;
     }
+    .svg-lb-container>img {
+        height: 1.5rem;
+        margin-right: 10px;
+    }
 }
 
 @media screen and (max-width: 420px) {

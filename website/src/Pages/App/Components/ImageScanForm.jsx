@@ -279,7 +279,7 @@ function ImageUploadForm(props) {
                                     value={date}
                                     onChange={handleDateChange}
                                     className="form-control"
-                                    style={{ width: "48%", display: "inline-block" }}
+                                    style={{ width: "47.5%", display: "inline-block" }}
                                 />
                                 <input
                                     type="text"
@@ -288,7 +288,7 @@ function ImageUploadForm(props) {
                                     onChange={handleLocationChange}
                                     className="form-control"
                                     placeholder="Location"
-                                    style={{ width: "48%", display: "inline-block", marginLeft: "4%" }}
+                                    style={{ width: "47.5%", display: "inline-block", float:"right" }}
                                 />
                             </div>
                             <p className='Form-title' style={{ marginTop: "40px" }}>IOT Data:</p>
