@@ -142,7 +142,9 @@ else{
             boxSizing: 'border-box',
             position:"absolute",
             height:drawerHeight,
-            zIndex:100
+            zIndex:100,
+            top:"50px",
+            height:"100%",
             
 
           },
