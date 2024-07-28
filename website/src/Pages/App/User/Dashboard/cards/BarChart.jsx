@@ -38,7 +38,7 @@ export default function BarLabel({barData}) {
       <Card sx={{height:cardHeight,width:cardWidth}}>
         <CardContent>
 
- <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+ <Typography sx={{ fontSize: 14 }} variant="div" color="text.secondary" gutterBottom>
          IOT Categories
         </Typography>
     <BarChart

@@ -102,7 +102,7 @@ export default function PieArcLabel({value}) {
   return (
     <Card sx={{height:cardHeight}}>
       <CardContent >
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        <Typography sx={{ fontSize: 14 }} variant="div" color="text.secondary" gutterBottom>
           Image Categories
         </Typography>
        {

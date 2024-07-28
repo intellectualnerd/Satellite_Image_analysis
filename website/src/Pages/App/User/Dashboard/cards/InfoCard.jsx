@@ -49,7 +49,7 @@ export default function BasicCard({count}) {
     <Card sx={{ width: cardWidth ,height:cardHeight}} className='card-item'>
       <CardContent>
       
-       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+       <Typography sx={{ fontSize: 14 }} color="text.secondary" variant="div" gutterBottom>
          EcoGen
         </Typography>
         <Typography variant="h5"  sx={{ mb: 1.8 }} component="div">

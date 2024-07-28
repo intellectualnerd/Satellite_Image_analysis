@@ -2,6 +2,9 @@ import * as React from 'react';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import { useState } from 'react';
+import { format } from 'date-fns'; 
+
 
 const dateFormatter = new Intl.DateTimeFormat(navigator.language, {
   day: 'numeric',
@@ -9,19 +12,33 @@ const dateFormatter = new Intl.DateTimeFormat(navigator.language, {
   year: 'numeric',
 });
 
+
+export default function InfoTable({table}) {
 const rows = [
-  { id: 0, image:"https://th.bing.com/th?id=OIP.rvSWtRd_oPRTwDoTCmkP5gHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2",Date: new Date(2023, 1, 1),Location:"India",Deforestation:0.03,AirPollution:0.01,ImageCategories:"desert",IOTCategories:"Good",Button:"rmv"},
-  { id: 1, image:"https://th.bing.com/th?id=OIP.rvSWtRd_oPRTwDoTCmkP5gHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2",Date: new Date(2023, 1, 2),Location:"India",Deforestation:0.13,AirPollution:0.01,ImageCategories:"desert",IOTCategories:"Good",Button:"rmv"},
-  { id: 2, image:"https://th.bing.com/th?id=OIP.rvSWtRd_oPRTwDoTCmkP5gHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2",Date: new Date(2023, 1, 3),Location:"India",Deforestation:0.23,AirPollution:0.01,ImageCategories:"desert",IOTCategories:"Good",Button:"rmv"},
-  { id: 3, image:"https://th.bing.com/th?id=OIP.rvSWtRd_oPRTwDoTCmkP5gHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2",Date: new Date(2023, 1, 4),Location:"India",Deforestation:0.04,AirPollution:0.01,ImageCategories:"desert",IOTCategories:"Good",Button:"rmv"},
-  { id: 4, image:"https://th.bing.com/th?id=OIP.rvSWtRd_oPRTwDoTCmkP5gHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2",Date: new Date(2023, 1, 5),Location:"India",Deforestation:0.15,AirPollution:0.01,ImageCategories:"desert",IOTCategories:"Good",Button:"rmv"},
-  { id: 5, image:"https://th.bing.com/th?id=OIP.rvSWtRd_oPRTwDoTCmkP5gHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2",Date: new Date(2023, 1, 6),Location:"India",Deforestation:0.13,AirPollution:0.01,ImageCategories:"desert",IOTCategories:"Good",Button:"rmv"},
-  { id: 6, image:"https://th.bing.com/th?id=OIP.rvSWtRd_oPRTwDoTCmkP5gHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2",Date: new Date(2023, 1, 7),Location:"India",Deforestation:0.3,AirPollution:0.01,ImageCategories:"desert",IOTCategories:"Good",Button:"rmv"},
-  { id: 7, image:"https://th.bing.com/th?id=OIP.rvSWtRd_oPRTwDoTCmkP5gHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2",Date: new Date(2023, 1, 8),Location:"India",Deforestation:0.030,AirPollution:0.01,ImageCategories:"desert",IOTCategories:"Good",Button:"rmv"},
 
 
 ];
-
+// 'image_url':image_url?image_url:"Not Availabel",
+//             'Date':date?new Date(date):"00-00-00",
+//             'location':location?location:"Not Availabel",
+//             'Deforestation':deforestationProbability?deforestationProbability:NaN,
+//             'AirPollution':airPollutionProbability?airPollutionProbability:NaN,
+//             'ImageCategory':areaClassification?areaClassification:"Not Availabel",
+//             'IotCategory':airQualityClassification?airQualityClassification:"Not Availabel"
+table.forEach((element,index)=>{
+let obj={
+  id:index,
+  image:element.image_url,
+  Date:element.Date,
+  Location:element.location,
+  Deforestation:element.Deforestation,
+  AirPollution:element.AirPollution,
+  ImageCategories:element.ImageCategory,
+  IOTCategories:element.IotCategory,
+  Button:"Rmv"
+}
+rows.push(obj)
+})
 const columns = [
   {
     field:'image',  
@@ -37,7 +54,7 @@ const columns = [
     field: 'Date',
     type: 'date',
     width: 170,
-    valueFormatter: (value) => dateFormatter.format(value),
+    valueFormatter: (value) =>  format(value, 'yyyy MMM dd'),
   },
   { field: 'Location',type:"string", width: 170 },
   {
@@ -69,13 +86,11 @@ const columns = [
   }
 
 ];
-
-export default function InfoTable() {
-  const [filterModel, setFilterModel] = React.useState({
+  const [filterModel, setFilterModel] = useState({
     items: [],
     quickFilterValues: [''],
   });
-  const [ignoreDiacritics, setIgnoreDiacritics] = React.useState(true);
+  const [ignoreDiacritics, setIgnoreDiacritics] = useState(true);
 
   return (
     <div style={{ width: '100%'}}>

@@ -7,7 +7,7 @@ import {useTheme} from '@mui/material';
 import { format } from 'date-fns'; 
 import {useMediaQuery} from '@mui/material';
 
-export default function MarkOptimization() {
+export default function MarkOptimization({lineChart}) {
 
 
    const theme = useTheme();
@@ -36,27 +36,35 @@ export default function MarkOptimization() {
     chartWidth = 1200;
     chartHeight = 280;
   }
+  let xaxisObj={
+    label: "Date And Time",
+              type: 'date',
+                data:lineChart.dates,
+          valueFormatter: (value) =>  format(value, 'yyyy MMM dd'),
 
+  }
+  if(lineChart.dates.length==0)
+  {
+
+ xaxisObj={
+ label: "Date And Time",
+              type: 'date',
+                data:lineChart.dates,
+        
+}
+  }
 
   return (
     <Card sx={{ width: cardWidth ,height:cardHeight}} >
         <CardContent>
-  <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+  <Typography sx={{ fontSize: 14 }} color="text.secondary" variant="div" gutterBottom>
           TIME V/S Deforestation And Air Pollution(%)
         </Typography>
 
     <LineChart
       xAxis={
         [
-            {
-                
-              label: "Date And Time",
-              type: 'date',
-                data:[new Date(2024,2,1),new Date(2024,2,2),new Date(2024,2,3),new Date(2024,2,4),new Date(2024,2,5)],
-          valueFormatter: (value) =>  format(value, 'MMM dd'),
-         
-            
-            }
+        xaxisObj
         ]
         }
     yAxis={[
@@ -67,13 +75,13 @@ export default function MarkOptimization() {
     title='TIME V/S Deforestation And Air Pollution(%)'
       series={[
         {
-           curve: "monotoneX",data: [2,  5.5, 8.5,1,1] ,
+           curve: "monotoneX",data: lineChart.deforestation ,
          color:'#e7be5b',
           showMark: ({ index }) => index % 2 === 0,
           
         },
         {
-          curve: "monotoneX", data: [6, 3, 7, 9.5, 4] , 
+          curve: "monotoneX", data: lineChart.airPollution, 
         },
     
       ]}

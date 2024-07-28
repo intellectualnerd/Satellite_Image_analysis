@@ -11,7 +11,7 @@ import DehazeOutlinedIcon from "@mui/icons-material/DehazeOutlined";
 import PersistentDrawerLeft from "./cards/Navbar";
 import InfoReactTable from "./cards/InfoTable";
 import { gsap } from "gsap";
-import axios from "axios"
+import axios from "axios";
 const DashBoard = () => {
   const containerRef = useRef();
   const cardRef = useRef();
@@ -20,64 +20,81 @@ const DashBoard = () => {
   const [value, setValue] = useState([]);
 
   const [barData, setBarData] = useState([]);
+  const [lineChart, setLineChart] = useState({
+    dates: [],
+    deforestation: [],
+    airPollution: [],
+  });
+  const [table, setTableData] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(0);
+
+  function setImageCountData(image_count) {
+    setCount(image_count);
+  }
+
+  function setPieChartData(data, areaClassified) {
+    if (areaClassified.get("CLOUDY")) {
+      data[0].value = areaClassified.get("CLOUDY");
+    }
+    if (areaClassified.get("GREEN_AREA")) {
+      data[1].value = areaClassified.get("GREEN_AREA");
+    }
+    if (areaClassified.get("DESERT")) {
+      data[2].value = areaClassified.get("DESERT");
+    }
+    if (areaClassified.get("WATER")) {
+      data[3].value = areaClassified.get("WATER");
+    }
+    setValue(data);
+  }
+  function checkAirQualityClassification(airQualityClassification, arr) {
+    if (airQualityClassification) {
+      let airQuality = airQualityClassification.toUpperCase();
+      if (airQuality == "GOOD") {
+        arr[0] = arr[0] + 1;
+      } else if (airQuality == "MODERATE") {
+        arr[1] = arr[1] + 1;
+      } else if (airQuality == "Unhealthy_for_Sensitive_Groups".toUpperCase()) {
+        arr[2] = arr[2] + 1;
+      } else if (airQuality == "Unhealthy".toUpperCase()) {
+        arr[3] = arr[3] + 1;
+      } else if (airQuality == "Very_Unhealthy".toUpperCase()) {
+        arr[4] = arr[4] + 1;
+      } else if (airQuality == "Severe".toUpperCase()) {
+        arr[5] = arr[5] + 1;
+      }
+    }
+  }
+  function setBarChartData(airQualityClassificationArray) {
+    setBarData(airQualityClassificationArray);
+  }
+  function setLineChartData(lineChartData) {
+    // 'dates':[],'deforestation':[],'airPollution':[]
+    let dates = [];
+    let deforestation = [];
+    let airpollution = [];
+
+    for (let index = 0; index < lineChartData.length; index++) {
+      dates.push(lineChartData[index][0]);
+      deforestation.push(lineChartData[index][1]);
+      airpollution.push(lineChartData[index][2]);
+    }
+
+    let obj = {
+      dates: dates,
+      deforestation: deforestation,
+      airPollution: airpollution,
+    };
+    setLineChart(obj);
+  }
+  function setTableDataFunction(table) {
+    setTableData(table);
+  }
 
   useEffect(() => {
     const request_url = "";
     const fetchData = async () => {
-
-function setImageCountData(image_count){
-  setCount(image_count)
-}
-
-function setPieChartData(data,areaClassified){
-  if (areaClassified.get("CLOUDY")) {
-          data[0].value = areaClassified.get("CLOUDY");
-        }
-        if (areaClassified.get("GREEN_AREA")) {
-          data[1].value = areaClassified.get("GREEN_AREA");
-        }
-        if (areaClassified.get("DESERT")) {
-          data[2].value = areaClassified.get("DESERT");
-        }
-        if (areaClassified.get("WATER")) {
-          data[3].value = areaClassified.get("WATER");
-        }
-        setValue(data);
-}
-function checkAirQualityClassification(airQualityClassification,arr){
-  if(airQualityClassification){
-  let airQuality=airQualityClassification.toUpperCase()
-   if(airQuality=="GOOD"){
-    arr[0]=arr[0]+1
-
-   }
-   else if(airQuality=="MODERATE")
-   {
-arr[1]=arr[1]+1
-   }
-   else if(airQuality==("Unhealthy_for_Sensitive_Groups".toUpperCase())){
-arr[2]=arr[2]+1
-
-   }
-   else if(airQuality==("Unhealthy").toUpperCase()){
-    arr[3]=arr[3]+1
-   }
-   else if(airQuality==("Very_Unhealthy".toUpperCase())){
-    arr[4]=arr[4]+1
-   }
-   else if(airQuality==("Severe".toUpperCase())){
-    arr[5]=arr[5]+1
-
-   }
-
-  }
-  
-}
-function setBarChartData(airQualityClassificationArray){
-  setBarData(airQualityClassificationArray)
-}
       try {
         let data = [
           { value: 0, label: "Cloudy" },
@@ -88,15 +105,47 @@ function setBarChartData(airQualityClassificationArray){
 
         let image_count = 0;
         let areaClassified = new Map();
-        let airQualityClassificationArray=[0,0,0,0,0,0]
+        let airQualityClassificationArray = [0, 0, 0, 0, 0, 0];
+        let fullObj = [];
+        let lineChartData = [];
         const response = await axios.get(request_url);
-      let   response_data = response.data;
+        let response_data = response.data;
         response_data.forEach((element) => {
           let image_url = element.image_url;
           let areaClassification = element.areaClassification;
-          let airQualityClassification=element.airQualityClassification
+          let airQualityClassification = element.airQualityClassification;
+          let date = element.date;
+          let deforestationProbability = element.deforestationProbability;
+          let airPollutionProbability = element.airPollutionProbability;
+          let location = element.location;
 
-          
+          let obj = {
+            image_url: image_url ? image_url : "Not Availabel",
+            Date: date ? new Date(date) : "00-00-00",
+            location: location ? location : "Not Availabel",
+            Deforestation: deforestationProbability
+              ? deforestationProbability
+              : NaN,
+            AirPollution: airPollutionProbability
+              ? airPollutionProbability
+              : NaN,
+            ImageCategory: areaClassification
+              ? areaClassification
+              : "Not Availabel",
+            IotCategory: airQualityClassification
+              ? airQualityClassification
+              : "Not Availabel",
+          };
+          fullObj.push(obj);
+
+          if (date && deforestationProbability && airPollutionProbability) {
+            lineChartData.push([
+              new Date(date),
+              deforestationProbability,
+              airPollutionProbability,
+            ]);
+          }
+
           if (image_url && image_url.length != 0) {
             image_count++;
           }
@@ -108,14 +157,18 @@ function setBarChartData(airQualityClassificationArray){
                 : areaClassified.get(areaClassification) + 1
             );
           }
-          checkAirQualityClassification(airQualityClassification,airQualityClassificationArray)
+          checkAirQualityClassification(
+            airQualityClassification,
+            airQualityClassificationArray
+          );
         });
 
-
+        lineChartData.sort((a, b) => a[0] - b[0]);
+        setLineChartData(lineChartData);
         setImageCountData(image_count);
-        setPieChartData(data,areaClassified)
-        setBarChartData(airQualityClassificationArray)
-      
+        setPieChartData(data, areaClassified);
+        setBarChartData(airQualityClassificationArray);
+        setTableDataFunction(fullObj);
       } catch (error) {
         console.log(error);
       }
@@ -162,7 +215,7 @@ function setBarChartData(airQualityClassificationArray){
             </div>
             <div className="line ">
               <div className="linechart card-item">
-                <MarkOptimization />
+                <MarkOptimization lineChart={lineChart} />
               </div>
             </div>
           </div>
@@ -175,7 +228,7 @@ function setBarChartData(airQualityClassificationArray){
               </Typography>
             </div>
             <div className="infoTable">
-              <InfoReactTable />
+              <InfoReactTable table={table} />
             </div>
           </div>
         )}
@@ -211,11 +264,12 @@ function setBarChartData(airQualityClassificationArray){
               <Typography variant="h6" gutterBottom>
                 Features:
               </Typography>
-              <Typography color="GrayText" gutterBottom>
+              <Typography  variant="div" color="GrayText" gutterBottom>
                 <Typography
                   sx={{ display: "inline-block" }}
                   fontWeight="bold"
                   color="Highlight"
+                  variant="div"
                 >
                   Upload and Analyze Data:
                 </Typography>
@@ -223,10 +277,11 @@ function setBarChartData(airQualityClassificationArray){
                 insights into deforestation probabilities and air pollution
                 levels.
               </Typography>
-              <Typography color="GrayText" gutterBottom>
+              <Typography color="GrayText" variant="div" gutterBottom>
                 <Typography
                   sx={{ display: "inline-block" }}
                   fontWeight="bold"
+                  variant="div"
                   color="Highlight"
                 >
                   Image Analysis:
@@ -234,7 +289,7 @@ function setBarChartData(airQualityClassificationArray){
                 Identify key characteristics of your images, such as cloudy
                 areas, green regions, deserts, and water bodies.
               </Typography>
-              <Typography color="GrayText" gutterBottom>
+              <Typography  variant="div" color="GrayText" gutterBottom>
                 <Typography
                   sx={{ display: "inline-block" }}
                   fontWeight="bold"
@@ -246,22 +301,24 @@ function setBarChartData(airQualityClassificationArray){
                 categorizes it as good, unhealthy, and more, providing
                 recommendations for improving conditions.
               </Typography>
-              <Typography color="GrayText" gutterBottom>
+              <Typography variant="div" color="GrayText" gutterBottom>
                 <Typography
                   sx={{ display: "inline-block" }}
                   fontWeight="bold"
                   color="Highlight"
+                  variant="div"
                 >
                   Actionable Insights:
                 </Typography>
                 Get the best actions to reduce pollution based on the analyzed
                 data.
               </Typography>
-              <Typography color="GrayText" gutterBottom>
+              <Typography variant="div" color="GrayText" gutterBottom>
                 <Typography
                   sx={{ display: "inline-block" }}
                   fontWeight="bold"
                   color="Highlight"
+                  variant="div"
                 >
                   Interactive Dashboard:
                 </Typography>
