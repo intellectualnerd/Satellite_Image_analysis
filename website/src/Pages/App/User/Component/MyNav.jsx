@@ -40,7 +40,7 @@ function MyNav() {
   };
 
   return (
-    <Navbar className='fixed-top' expand="lg" bg="dark" variant="dark" style={myStyle}>
+    <Navbar className='fixed-top nav' expand="lg" bg="dark" variant="dark" style={myStyle} >
       <Container>
         <Navbar.Brand href="/" onClick={handleLinkClick('/')}>
           <img src={logo} style={{ height: "40px", margin: "0 10px 0 0" }} />
