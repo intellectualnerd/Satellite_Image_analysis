@@ -114,6 +114,10 @@
     width: 100%;
   
 }
+.css-3ltj6f .MuiDataGrid-container--top [role="row"], .css-3ltj6f .MuiDataGrid-container--bottom [role="row"]{
+background-color: #54608e !important; 
+
+}
 .css-14mxsc7-MuiDataGrid-root .MuiDataGrid-container--top [role=row], .css-14mxsc7-MuiDataGrid-root .MuiDataGrid-container--bottom [role=row]{
 background-color: #54608e !important; 
 }
