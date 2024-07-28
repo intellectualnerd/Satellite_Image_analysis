@@ -81,9 +81,7 @@
     left: 25%;
     display: none;
 }
-.css-1ie9w8x{
-    display: none !important;
-}
+
 .css-bk5zgf-MuiResponsiveChart-container{
     top: -30px !important;
 }
@@ -161,4 +159,7 @@ background-color: #54608e !important;
    height: auto;
 }
 
+}
+.css-1ie9w8x{
+    display: none !important;
 }
